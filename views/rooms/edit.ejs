@@ -75,7 +75,9 @@
                     <input class="form-control form-control-sm" id="formFileSm" type="file" name="image" multiple>
                 </div>
                 <div class="mb-3">
+                    <% if(room.image.length){ %> 
                     <h6>Delete images</h6>
+                    <% } %> 
                     <% room.image.forEach((img,i)=>{ %>
                      <img src="<%= img.url %> " alt="" style="width :40%; height:40%">
                      <div class="form-check-inline">
