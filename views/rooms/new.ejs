@@ -1,0 +1,84 @@
+<%layout('layouts/boilerplate') %>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <p class="h1">New Room</p>
+            <form action="http://localhost:5000/room" method="POST" novalidate class="validated" enctype="multipart/form-data">
+                <div class="mb-1 input-group-sm">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-control" name="Room[title]" required>
+                    <div class="invalid-feedback">
+                        Required
+                    </div>
+                </div>
+                <div class="mb-1 input-group-sm">
+                    <label class="form-label">Location</label>
+                    <input type="text" class="form-control" name="Room[location]" required>
+                    <div class="invalid-feedback">
+                        Required
+                    </div>
+                </div>
+
+                <div>
+                <div id="map" style='width: 400px; height: 300px;'></div>
+                <pre id="coordinates" class="coordinates"></pre>
+                </div>
+
+                <div class="mb-1 input-group-sm">
+                <label class="form-label">Coordinates</label>
+                <input type="text" name="Room[longitude]" id="longitude"  value="0">
+                <input type="text" name="Room[latitude]" id="latitude" value="0">
+                </div>
+                <!-- <div class="mb-1 input-group-sm">
+                    <label for="">upload image</label>
+                    <input type="file" name="image" multiple>
+                </div> -->
+                <div class="mb-1 input-group-sm">
+                    <label class="form-label">Price/day</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">&#8377</span>
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
+                            name="Room[price]" min="0" required >
+                        <div class="invalid-feedback">
+                            is not valid
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-2 input-group-sm">
+                    <label class="form-label">Description</label>
+                    <textarea type="text" class="form-control" name="Room[description]" required></textarea>
+                    <div class="invalid-feedback">
+                        Required
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="formFileSm" class="form-label">Upload images</label>
+                    <input class="form-control form-control-sm" id="formFileSm" type="file" name="image" multiple>
+                </div>
+                <button type="submit" class="btn btn-success mb-2">Submit</button>
+            </form>
+    
+        </div>
+    </div>
+
+
+
+    <!-- <p class="h1">New Room</p>
+    <form action="http://localhost:5000/room" method="POST">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" id='title' name="Room[title]">
+        </div>
+        <div>
+            <label for="loction">Location</label>
+            <input type="text" id='location' name="Room[location]">
+        </div>
+        <button>submit</button>
+    </form> -->
+
+    <script>
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    </script>
+
+<script src="/javascript/dragableMap.js">
+</script>

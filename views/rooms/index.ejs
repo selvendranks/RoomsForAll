@@ -1,0 +1,41 @@
+<%layout('layouts/boilerplate') %> 
+    
+   <div id="map" style="width:100%; height: 500px">
+
+   </div>
+
+    <h1>All Rooms</h1>
+    <!-- <div>
+        <a href="http://localhost:5000/room/new">Add new Room</a>
+    </div> -->
+    <div>
+        <iframe frameborder="0" src="https://itch.io/embed/1245239?border_width=0" width="550" height="165"><a href="https://selvendran.itch.io/drag-zombie-survival">Zombie Survival by SELVENDRAN K</a></iframe>
+
+    </div>
+    
+    <ul>
+        <% for(let room of rooms){ %>
+            <div class="card m-2 d-inline-block" style="width: 18rem;">
+                <% if(room.image.length){ %> 
+                <img src=<%= room.image[0].url %>  class="card-img-top" alt="...">
+                <% }else{ %>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png?20190827162820" alt="" class="card-img-top">
+                    <% } %>  
+                <div class="card-body">
+                  <h5 class="card-title"><%= room.title %> </h5>
+                  <p class="card-text"><%= room.description %> </p>
+                  <p class="card-text">
+                      <small class="text-muted"><%= room.location %> </small>
+                  </p>
+                  <a href="/room/<%= room._id %> " class="btn btn-primary">View <%= room.title %> </a>
+                </div>
+              </div>
+        <%} %> 
+    </ul>
+
+
+    <script>
+         const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+         const rooms = {features: <%- JSON.stringify(rooms) %>}
+    </script>
+    <script src="/javascript/clusterMap.js"></script>
