@@ -1,6 +1,6 @@
 <%layout('layouts/boilerplate') %>
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6 offset-md-3" >
             <p class="h1">New Room</p>
             <form action="/room" method="POST" novalidate class="validated" enctype="multipart/form-data">
                 <div class="mb-1 input-group-sm">
@@ -23,15 +23,27 @@
                 <pre id="coordinates" class="coordinates"></pre>
                 </div>
 
-                <div class="mb-1 input-group-sm">
+                <!-- <div class="mb-1 input-group-sm">
                 <label class="form-label">Coordinates</label>
                 <input type="text" name="Room[longitude]" id="longitude"  value="0">
                 <input type="text" name="Room[latitude]" id="latitude" value="0">
-                </div>
+                </div> -->
                 <!-- <div class="mb-1 input-group-sm">
                     <label for="">upload image</label>
                     <input type="file" name="image" multiple>
                 </div> -->
+                <div>   
+                    <label class="form-label">Coordinates</label>
+                    </div>
+                    <div>
+                    <label class="form-label d-inline-block">longitute:</label>
+                    <input type="text" name="Room[longitude]" id="longitude"  value="0" >
+                    </div>
+                    <div>
+                    <label class="form-label">latitude :</label>
+                    <input type="text" name="Room[latitude]" id="latitude" value="0" >
+                </div> 
+
                 <div class="mb-1 input-group-sm">
                     <label class="form-label">Price/day</label>
                     <div class="input-group mb-3">

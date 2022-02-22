@@ -13,7 +13,7 @@
     </form>
     <a href="/room/<%= room._id %>">Back</a> -->
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6 offset-md-3">
             <h1>Edit room</h1>
             <form action="/room/<%= room._id %>?_method=PUT" method="POST" novalidate class="validated" enctype="multipart/form-data">
                 <div class="mb-1 input-group-sm">
@@ -23,7 +23,7 @@
                         Required
                       </div>
                 </div>
-                <div class="mb-1 input-group-sm">
+                <div class="mb-2 input-group-sm">
                     <label class="form-label">Location</label>
                     <input type="text" class="form-control" name="Room[location]" value="<%= room.location %>" required>
                     <div class="invalid-feedback">
@@ -35,13 +35,19 @@
                 <div>
                     <div id="map" style='width: 400px; height: 300px;'></div>
                     <pre id="coordinates" class="coordinates"></pre>
-                    </div>
+               </div>
 
-                    <div class="mb-1 input-group-sm">
-                        <label class="form-label">Coordinates</label>
-                        <input type="text" name="Room[longitude]" id="longitude"  value=<%= room.geometry.coordinates[0] %> >
-                        <input type="text" name="Room[latitude]" id="latitude" value=<%= room.geometry.coordinates[1] %> >
-                        </div>
+                 <div>   
+                <label class="form-label">Coordinates</label>
+                </div>
+                <div>
+                <label class="form-label d-inline-block">longitute:</label>
+                <input type="text" name="Room[longitude]" id="longitude"  value=<%= room.geometry.coordinates[0] %> >
+                </div>
+                <div>
+                <label class="form-label">latitude :</label>
+                <input type="text" name="Room[latitude]" id="latitude" value=<%= room.geometry.coordinates[1] %> >
+                </div> 
 
                 <div class="mb-1 input-group-sm">
                     <label class="form-label">Price/day</label>
