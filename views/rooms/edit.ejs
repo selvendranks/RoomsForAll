@@ -35,6 +35,7 @@
                 <div>
                     <div id="map" style='width: 350px; height: 300px;'></div>
                     <pre id="coordinates" class="coordinates"></pre>
+                    <p style="color: gray; font-size: 75%;">We automatically take your entered location and mark it on the map after you submit, but if you want to be more precise use the map marker or else please dont disturb the default mark on map and the coordinates</p>
                </div>
 
                  <div>   
@@ -90,7 +91,9 @@
 
         <script>
             const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+            const long = '<%- room.geometry.coordinates[0] %>';
+            const lat = '<%- room.geometry.coordinates[1] %>';
         </script>
     
-    <script src="/javascript/dragableMap.js">
+    <script src="/javascript/dragableMap_Edit.js">
     </script>
