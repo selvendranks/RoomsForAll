@@ -41,13 +41,13 @@
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-muted">
-                        <%= room.location %>
+                    <li class="list-group-item">
+                      <b>Location</b> : <%= room.location %>
                     </li>
-                    <li class="list-group-item">submitted by <%= room.author.username %>
+                    <li class="list-group-item"><b>Creator</b> : <%= room.author.username %>
                     </li>
-                    <li class="list-group-item">$<%= room.price %>/month </li>
-
+                    <li class="list-group-item"><b>Price</b> :&#8377 <%= room.price %>/day </li>
+                    <li class="list-group-item"><b>Contact</b> : <%= room.author.email %> </li>
                 </ul>
                 <% if(currentUser && room.author.equals(currentUser._id)) {%>
                     <div class="card-body">
