@@ -16,7 +16,7 @@ const mongoSanitize = require('express-mongo-sanitize')
 const MongoStore = require("connect-mongo");
 
 // process.env.DB_URL
-const dbUrl =  process.env.DB_URL || 'mongodb://localhost:27017/Rooms';
+const dbUrl =  process.env.DB_URL;
 
 const rooms = require('./routes/rooms');
 const reviews = require('./routes/reviews')
@@ -35,7 +35,7 @@ app.engine('ejs',ejsMate);
 app.use(express.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
-const secret = process.env.SECRET || 'goodsecret'
+const secret = process.env.SECRET;
 
 const sessionConfig = { 
     name: 'session',
