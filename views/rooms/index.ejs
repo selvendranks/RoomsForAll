@@ -17,7 +17,7 @@
     <ul>
      
         <% for(let room of rooms){ %>
-            <% if(currentUser && room.author.equals(currentUser._id)){%>
+            <% if(currentUser && room.author.equals(currentUser._id)){ i=1%>
             <div class="card m-2 d-inline-block" style="width: 18rem;">
                 <% if(room.image.length){ %> 
                 <img src=<%= room.image[0].url %>  class="card-img-top" alt="...">
@@ -33,11 +33,14 @@
                   <a href="/room/<%= room._id %> " class="btn btn-primary">View <%= room.title %> </a>
                 </div>
               </div>
-         <%}}%> 
+         <%}}if(i !==1){%>
+            <h5>No room of yours avilable. Try loging in and add some room </h5> 
+            <% } %> 
     </ul>
 
 
     <script>
+        const i =0;
          const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
          const rooms = {features: <%- JSON.stringify(rooms) %>}
     </script>
