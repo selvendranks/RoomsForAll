@@ -17,13 +17,19 @@
                         Required
                     </div>
                 </div>
-
+                
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="Room[vacancy]" value="available">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Room vacant ?</label>
+                    <label class="form-check-label text-muted"  style="font-size: small;"for="flexSwitchCheckDefault">switch on if yes</label>
+                  </div>
+                
                 <div>
                 <div id="map" style='width: 350px; height: 300px;'></div>
                 <pre id="coordinates" class="coordinates"></pre>
                 <p style="color: gray; font-size: 75%;">We automatically take your entered location and mark it on the map after you submit, but if you want to be more precise use the map marker or else please dont disturb the default mark on map and the coordinates</p>
                 </div>
-
+                
                 <!-- <div class="mb-1 input-group-sm">
                 <label class="form-label">Coordinates</label>
                 <input type="text" name="Room[longitude]" id="longitude"  value="0">

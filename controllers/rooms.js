@@ -17,7 +17,7 @@ module.exports.index = async(req,res)=>{
 
 module.exports.addNewRoom = async (req,res)=>{
      
-    const {latitude,longitude} = req.body.Room;
+    const {latitude,longitude,vacancy} = req.body.Room;
     const markedCordinates = [parseFloat(longitude),parseFloat(latitude)];
 
     const geodata = await geocoder.forwardGeocode({
@@ -32,6 +32,15 @@ module.exports.addNewRoom = async (req,res)=>{
     }
     room.image =  req.files.map(f=>({ url:f.path , filename:f.filename }))
     room.author = req.user._id;
+    
+
+    if(vacancy=="available"){
+        room.vacancy = vacancy;
+    }
+    else{
+        room.vacancy = "unavailable";
+    }
+
     await room.save()
     console.log(room);
     req.flash('sucess','Sucessfully added new room');
@@ -60,7 +69,9 @@ module.exports.showRoom =async (req,res)=>{
 
 module.exports.updateRoom = async (req,res)=>{
 
-    const {latitude,longitude} = req.body.Room;
+    // res.send(req.body);
+
+    const {latitude,longitude,vacancy} = req.body.Room;
     const markedCordinates = [parseFloat(longitude),parseFloat(latitude)];
     const {id} = req.params;
     console.log(req.body.deleteImages);
@@ -69,6 +80,8 @@ module.exports.updateRoom = async (req,res)=>{
     room.image.push(...imgs);
     
     room.geometry.coordinates = markedCordinates;
+    
+    room.geometry
 
     if(req.body.deleteImages){
 
@@ -77,6 +90,13 @@ module.exports.updateRoom = async (req,res)=>{
         }
         await room.updateOne({$pull:{image:{filename:{$in : req.body.deleteImages}}}})
         
+    }
+
+    if(vacancy=="available"){
+        room.vacancy = vacancy;
+    }
+    else{
+        room.vacancy = "unavailable";
     }
 
     await room.save();

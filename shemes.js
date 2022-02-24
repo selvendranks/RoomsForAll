@@ -34,7 +34,8 @@ module.exports.RoomSchema =
             location: Joi.string().required().escapeHTML(),
             description: Joi.string().required().escapeHTML(),
             longitude : Joi.string().escapeHTML(),
-            latitude : Joi.string().escapeHTML()
+            latitude : Joi.string().escapeHTML(),
+            vacancy: Joi.string()
         }).required()
     })
 

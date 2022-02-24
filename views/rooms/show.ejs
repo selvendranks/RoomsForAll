@@ -48,6 +48,7 @@
                     </li>
                     <li class="list-group-item"><b>Price</b> :&#8377 <%= room.price %>/day </li>
                     <li class="list-group-item"><b>Contact</b> : <%= room.author.email %> </li>
+                    <li class="list-group-item"><b>Vacancy</b> : <%= room.vacancy %> </li>
                 </ul>
                 <% if(currentUser && room.author.equals(currentUser._id)) {%>
                     <div class="card-body">

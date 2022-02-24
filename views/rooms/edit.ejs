@@ -30,8 +30,20 @@
                         Required
                       </div>
                 </div>
-            
-                
+            <%if(room.vacancy=="available") {%> 
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="Room[vacancy]" value="available" checked>
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Room vacant ?</label>
+                    <label class="form-check-label text-muted"  style="font-size: small;"for="flexSwitchCheckDefault">switch on if yes</label>
+                  </div>
+                  <% } else{%>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="Room[vacancy]" value="available">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Room vacant ?</label>
+                        <label class="form-check-label text-muted"  style="font-size: small;"for="flexSwitchCheckDefault">switch on if yes</label>
+                      </div>
+                    <% } %> 
+
                 <div>
                     <div id="map" style='width: 350px; height: 300px;'></div>
                     <pre id="coordinates" class="coordinates"></pre>
@@ -90,6 +102,7 @@
             </form>
             <a href="/room/<%= room._id %>">Back</a>
         </div>
+
 
         <script>
             const mapToken = '<%-process.env.MAPBOX_TOKEN%>';

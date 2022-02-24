@@ -20,6 +20,10 @@ const roomsSchema = new Shema({
         type:String,
         require:true
     },
+    vacancy:{
+      type:String,
+      require: true
+    },
     image:[{
         url:String,
         filename:String
