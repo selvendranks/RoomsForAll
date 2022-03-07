@@ -16,7 +16,7 @@ module.exports.registerUser = async (req,res)=>{
           // req.flash('sucess',"Welcome to yelpcamp");
           // res.redirect('/room');
       })
-      req.flash('sucess',"Welcome to yelpcamp");
+      req.flash('sucess',"Welcome to RoomsForAll");
           res.redirect('/room');
     }
     catch(e){
