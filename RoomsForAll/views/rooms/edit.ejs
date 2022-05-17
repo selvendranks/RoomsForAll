@@ -1,0 +1,114 @@
+<%layout('layouts/boilerplate') %>
+    <!-- <h1>Edit room</h1> -->
+    <!-- <form action="http://localhost:5000/room/<%= room._id %>?_method=PUT" method="post">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" id='title' name="Room[title]" value="<%= room.title %> ">
+        </div>
+        <div>
+            <label for="loction">Location</label>
+            <input type="text" id='location' name="Room[location]" value="<%= room.location %> ">
+        </div>
+        <button>update</button>
+    </form>
+    <a href="/room/<%= room._id %>">Back</a> -->
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1>Edit room</h1>
+            <form action="/room/<%= room._id %>?_method=PUT" method="POST" novalidate class="validated" enctype="multipart/form-data">
+                <div class="mb-1 input-group-sm">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-control" name="Room[title]" value="<%= room.title %> " required>
+                    <div class="invalid-feedback">
+                        Required
+                      </div>
+                </div>
+                <div class="mb-2 input-group-sm">
+                    <label class="form-label">Location</label>
+                    <input type="text" class="form-control" name="Room[location]" value="<%= room.location %>" required>
+                    <div class="invalid-feedback">
+                        Required
+                      </div>
+                </div>
+            <%if(room.vacancy=="available") {%> 
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="Room[vacancy]" value="available" checked>
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Room vacant ?</label>
+                    <label class="form-check-label text-muted"  style="font-size: small;"for="flexSwitchCheckDefault">switch on if yes</label>
+                  </div>
+                  <% } else{%>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="Room[vacancy]" value="available">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Room vacant ?</label>
+                        <label class="form-check-label text-muted"  style="font-size: small;"for="flexSwitchCheckDefault">switch on if yes</label>
+                      </div>
+                    <% } %> 
+
+                <div>
+                    <div id="map" style='width: 350px; height: 300px;'></div>
+                    <pre id="coordinates" class="coordinates"></pre>
+                    <p style="color: gray; font-size: 75%;">We automatically take your entered location and mark it on the map after you submit, but if you want to be more precise use the map marker or else please dont disturb the default mark on map and the coordinates</p>
+               </div>
+
+                 <div>   
+                <label class="form-label">Coordinates</label>
+                </div>
+                <div>
+                <label class="form-label d-inline-block">longitute:</label>
+                <input type="text" name="Room[longitude]" id="longitude"  value=<%= room.geometry.coordinates[0] %> >
+                </div>
+                <div>
+                <label class="form-label">latitude :</label>
+                <input type="text" name="Room[latitude]" id="latitude" value=<%= room.geometry.coordinates[1] %> >
+                </div> 
+
+                <div class="mb-1 input-group-sm">
+                    <label class="form-label">Price/day</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">&#8377</span>
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" required
+                            name="Room[price]" value="<%= room.price %>" min="0">
+                            <div class="invalid-feedback">
+                                is not valid
+                              </div>
+                    </div>
+                </div>
+
+                <div class="mb-2 input-group-sm">
+                    <label class="form-label">Description</label>
+                    <textarea type="text" class="form-control" name="Room[description]"
+                        required><%= room.description %></textarea>
+                        <div class="invalid-feedback">
+                            Required
+                          </div>
+                </div>
+                <div class="mb-3">
+                    <label for="formFileSm" class="form-label">Upload images</label>
+                    <input class="form-control form-control-sm" id="formFileSm" type="file" name="image" multiple>
+                </div>
+                <div class="mb-3">
+                    <% if(room.image.length){ %> 
+                    <h6>Delete images</h6>
+                    <% } %> 
+                    <% room.image.forEach((img,i)=>{ %>
+                     <img src="<%= img.url %> " alt="" style="width :40%; height:40%">
+                     <div class="form-check-inline">
+                         <input type="checkbox" id="image-<%=i%>" name = "deleteImages" value="<%= img.filename %>">
+                     </div> 
+                     <% }) %> 
+                </div>
+
+                <button type="submit" class="btn btn-info mb-2">Apply Changes</button>
+            </form>
+            <a href="/room/<%= room._id %>">Back</a>
+        </div>
+
+
+        <script>
+            const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+            const long = '<%- room.geometry.coordinates[0] %>';
+            const lat = '<%- room.geometry.coordinates[1] %>';
+        </script>
+    
+    <script src="/javascript/dragableMap_Edit.js">
+    </script>
