@@ -1,5 +1,5 @@
 # RoomsForAll
-https://secure-tor-03292.herokuapp.com/
+https://adorable-vestments-moth.cyclic.app/
 
 A web app to rent rooms with real time map facilities 
 
